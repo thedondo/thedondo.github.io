@@ -1,1 +1,65 @@
 /* Adding personal touches on top of bootstrap */
+
+a:link { color: #fff;}a:visited { color: #fff;}a:active {color:#fff}a{text-decoration: none;}a:focus, a:hover { text-decoration: none;}
+
+.bg-color-main {
+    background-color: #444a5a;
+}
+.bg-color-white {
+    background-color: white;
+}
+
+.font-main {
+    font-family: 'Open Sans Condensed', sans-serif;
+}
+.brand-name {
+    font-size: 22px;
+}
+
+.bg-color-grey {
+    background-color: grey;
+}
+
+.txt-color-w {
+    color: white;
+}
+
+.space-10 {
+    width: 100%;
+    height: 20px;
+}
+.space-50 {
+    width: 100%;
+    height: 50px;
+}
+
+.margin-b-20 {
+    margin-bottom: 20px;
+}
+
+.margin-r-10 {
+    margin-right: 10px;
+}
+
+.margin-l-10 {
+    margin-left: 10px;
+}
+
+.spacer-style {
+    width: 10%;
+    border-top: 2.5px solid white;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+}
+
+.pad-top-10 {
+    padding-top: 10px;
+}
+.fa {
+    color: white;
+}
