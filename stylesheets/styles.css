@@ -16,8 +16,8 @@ a:link { color: #fff;}a:visited { color: #fff;}a:active {color:#fff}a{text-decor
     font-size: 22px;
 }
 
-.bg-color-grey {
-    background-color: grey;
+.ls-3px {
+    letter-spacing: 4px;
 }
 
 .txt-color-w {
