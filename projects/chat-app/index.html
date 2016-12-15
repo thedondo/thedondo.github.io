@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
+
+    <title>chat app</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <h1 class="text-center">Chat App</h1>
+        </div>
+        <div class="row">
+            <div class="form-group col-sm-12">
+                <textarea id="msg-txt-area" class="form-control"></textarea>
+                <button id="chat-submit" type="submit" class="btn btn-primary btn-block">Submit!</button>
+            </div>
+        </div>
+    </div>
+    <div id="messages" class="container"></div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        var $ = window.jQuery;
+        var buttonElement = $('#chat-submit');
+        var txtArea = $('#msg-txt-area');
+        var msgFeed = $('#messages');
+
+        // create the chat Object and methods
+        var Chat = Object.create(window);
+
+        // initialize Chat object with a new url
+        Chat.init = function(url) {
+            this.url = url;
+        }
+
+        // Gets the messages saved on the server
+        Chat.getMsgs = function(callback) {
+            $.getJSON(this.url + '/getmessages', function(data) {
+                callback(data);
+            });
+        }
+
+        // Send the message input by the user
+        Chat.sendMsg = function(msg, callback) {
+            $.post(this.url + '/sendmessage?msg='+ msg, function(data) {
+                callback(data);
+            });
+        }
+
+        // Event handlers for the app
+        buttonElement.on('click', function(e) {
+            var txtmsg = txtArea.val();
+            app.sendMsg(txtmsg, function(res) {
+                console.log(res);
+                updateClient(txtmsg);
+            });
+        });
+
+        // updates the ui
+        function updateClient(msg) {
+            msgFeed.prepend(
+                "<div class='row text-center'>" +
+                    "<h3>" + msg +
+                "</h3></div>"
+            );
+        }
+
+        // run after all that loads
+        var app = Object.create( Chat );
+        app.init('https://thedondo-chat.herokuapp.com');
+
+        // when run, gets the messages and displays them on ui
+        app.getMsgs(function(data) {
+            var serverData = JSON.parse(data);
+            for (val in serverData) {
+                updateClient(serverData[val]);
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,6 +1,6 @@
 /* Adding personal touches on top of bootstrap */
 
-a:link { color: #3498db;}a:visited { color: #fff;}a:active {color:#3498db}a{text-decoration: none;}a:focus, a:hover { text-decoration: none;}
+a:link { color: #3498db;}a:visited { color: #3498db;}a:active {color:#3498db}a{text-decoration: none;}a:focus, a:hover { text-decoration: none;}
 
 .bg-color-main {
     background-color: #444a5a;
